@@ -1,0 +1,42 @@
+# --- Identity ---
+name: "code-review-pipeline"
+display_name: "Code Review Pipeline"
+description: "Automated PR review with style checking, security scan, and structured feedback"
+version: "1.0.0"
+engine: ">=1.0.0"
+
+# --- Attribution ---
+author:
+  name: "skrptiq"
+  url: "https://hub.skrptiq.ai"
+
+licence: "MIT"
+repository: "https://github.com/skrpts/code-review-pipeline"
+
+# --- Discovery (Hub) ---
+category: "developer"
+tags:
+  - "code-review"
+  - "security"
+  - "pull-requests"
+
+# --- Security & Access ---
+requires:
+  services:
+    - "anthropic-claude"
+    - "github-mcp"
+  permissions:
+    - "network:github.com"
+  data_handling:
+    - "source-code"
+
+# --- Contents ---
+contents:
+  skills: 3
+  prompts: 5
+  workflows: 1
+  services: 2
+  sources: 1
+  documents: 0
+  assets: 0
+  total: 12
