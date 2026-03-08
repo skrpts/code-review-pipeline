@@ -10,6 +10,6 @@ on:
 
 jobs:
   release:
-    uses: skrpts/.github/.github/workflows/release.yml@main
+    uses: skrpts/workflows/.github/workflows/release.yml@main
     secrets:
       SIGNING_PRIVATE_KEY: ${{ secrets.SIGNING_PRIVATE_KEY }}
