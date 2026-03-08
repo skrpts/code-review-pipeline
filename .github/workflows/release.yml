@@ -1,5 +1,5 @@
-# Trigger the shared sign-and-release workflow on version tags.
-# This file goes in each skrpt repo as .github/workflows/release.yml
+# Sign and release a skrpt package on version tag push.
+# Requires org-level secret: SIGNING_PRIVATE_KEY (Ed25519 PEM)
 
 name: Release
 
@@ -10,6 +10,98 @@ on:
 
 jobs:
   release:
-    uses: skrpts/workflows/.github/workflows/release.yml@main
-    secrets:
-      SIGNING_PRIVATE_KEY: ${{ secrets.SIGNING_PRIVATE_KEY }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Extract version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Sign the skrpt
+        env:
+          SIGNING_PRIVATE_KEY: ${{ secrets.SIGNING_PRIVATE_KEY }}
+        run: |
+          echo "$SIGNING_PRIVATE_KEY" > /tmp/signing.key
+          node -e '
+          const { createHash, sign, createPrivateKey } = require("node:crypto");
+          const { readFileSync, writeFileSync, readdirSync, statSync } = require("node:fs");
+          const { join, relative } = require("node:path");
+
+          const dir = ".";
+          const keyPem = readFileSync("/tmp/signing.key", "utf-8");
+          const privateKey = createPrivateKey(keyPem);
+          const tier = "official";
+
+          function collectFiles(d, base) {
+            base = base || d;
+            const entries = readdirSync(d, { withFileTypes: true });
+            const files = [];
+            for (const e of entries) {
+              const fp = join(d, e.name);
+              if (e.name.startsWith(".") || e.name === "node_modules") continue;
+              if (e.isDirectory()) files.push(...collectFiles(fp, base));
+              else if (e.isFile()) files.push(relative(base, fp));
+            }
+            return files;
+          }
+
+          const allFiles = collectFiles(dir);
+          const nonManifest = allFiles.filter(f => f !== "skrptiq.yaml");
+          const manifest = readFileSync(join(dir, "skrptiq.yaml"), "utf-8");
+          const clean = manifest
+            .replace(/\n*integrity:[\s\S]*?(?=\n[a-z]|\n*$)/, "")
+            .replace(/\n*trust:[\s\S]*?(?=\n[a-z]|\n*$)/, "")
+            .trimEnd() + "\n";
+
+          const hash = createHash("sha256");
+          hash.update("skrptiq.yaml");
+          hash.update(clean);
+          for (const f of [...nonManifest].sort()) {
+            hash.update(f.split(/[\\/]/).join("/"));
+            hash.update(readFileSync(join(dir, f)));
+          }
+          const checksum = hash.digest("hex");
+          const sig = sign(null, Buffer.from(checksum), privateKey).toString("base64");
+          const now = new Date().toISOString();
+
+          let out = clean.trimEnd() + "\n";
+          out += "\nintegrity:\n";
+          out += "  checksum: \"sha256:" + checksum + "\"\n";
+          out += "  signature: \"ed25519:" + sig + "\"\n";
+          out += "  signed_at: \"" + now + "\"\n";
+          out += "  signed_by: \"hub.skrptiq.ai\"\n";
+          out += "\ntrust:\n";
+          out += "  tier: \"" + tier + "\"\n";
+          out += "  reviewed: true\n";
+          out += "  reviewed_at: \"" + now + "\"\n";
+
+          writeFileSync(join(dir, "skrptiq.yaml"), out);
+          console.log("Signed: sha256:" + checksum.slice(0, 16) + "...");
+          '
+          rm /tmp/signing.key
+
+      - name: Create release zip
+        run: |
+          SLUG=$(basename "$GITHUB_REPOSITORY")
+          VERSION="${{ steps.version.outputs.version }}"
+          ZIP_NAME="${SLUG}-v${VERSION}.zip"
+          zip -r "$ZIP_NAME" . -x ".git/*" ".github/*"
+          echo "zip_name=${ZIP_NAME}" >> "$GITHUB_ENV"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: v${{ steps.version.outputs.version }}
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
+          files: ${{ env.zip_name }}
