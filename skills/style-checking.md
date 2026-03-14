@@ -5,7 +5,7 @@ title: Style Checking
 description: "Validates code against style guidelines, naming conventions, and formatting standards"
 tags: [Production]
 connections:
-  - target: anthropic-claude
+  - target: llm-service
     type: runs_on
   - target: review-standards
     type: references

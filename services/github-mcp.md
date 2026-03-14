@@ -70,4 +70,4 @@ GitHub's API rate limit is 5,000 requests per hour for authenticated users. The 
 
 ## Privacy Considerations
 
-All repository data accessed through this service flows through the Anthropic Claude service for analysis. Users should ensure their organisation's policies permit sending source code to third-party LLM providers. The `data_handling: source-code` declaration in the manifest makes this explicit during import.
+All repository data accessed through this service is sent to your configured LLM provider for analysis. Users should ensure their organisation's policies permit sending source code to third-party AI services. The `data_handling: source-code` declaration in the manifest makes this explicit during import.

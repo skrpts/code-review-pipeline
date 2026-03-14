@@ -5,7 +5,7 @@ title: Code Analysis
 description: "Analyses code for patterns, complexity, and potential bugs across common languages"
 tags: [Production, Tested]
 connections:
-  - target: anthropic-claude
+  - target: llm-service
     type: runs_on
 metadata:
   complexity: medium

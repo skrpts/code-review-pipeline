@@ -23,7 +23,7 @@ connections:
     type: uses
   - target: github-mcp
     type: runs_on
-  - target: anthropic-claude
+  - target: llm-service
     type: runs_on
 metadata:
   estimated_duration: "30-90 seconds"
@@ -116,3 +116,49 @@ Using the GitHub MCP service:
 | `skip_security` | false | Skip security scanning pass |
 | `auto_approve` | false | If true, automatically approve PRs with no high/critical findings |
 | `batch_size` | 2000 | Maximum changed lines per analysis batch |
+
+## Inputs
+
+| Name | Required | Description | Example |
+|------|----------|-------------|---------|
+| `{{input.pr_url}}` | Yes | GitHub pull request URL | `https://github.com/acme/api/pull/42` |
+| `{{input.severity_threshold}}` | No | Minimum severity to report. Default: `low` | `medium` |
+| `{{input.skip_style}}` | No | Skip style checking pass. Default: `false` | `true` |
+| `{{input.skip_security}}` | No | Skip security scanning pass. Default: `false` | `true` |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| Review summary | Top-level PR comment summarising all findings, posted as a GitHub PR comment |
+| Inline comments | Per-line review comments posted directly on the diff |
+| Security report | Detailed security findings (only if issues found), posted as a collapsed comment |
+| Style violations | Categorised list of style issues with auto-fix availability noted |
+| Approval decision | Final verdict: APPROVE, REQUEST_CHANGES, or COMMENT |
+
+## Setup
+
+Before running this workflow:
+
+1. **GitHub MCP server** — install and configure the GitHub MCP server in your skrptiq settings. The workflow uses it to fetch PR data and post review comments.
+2. **GitHub access** — ensure the MCP server has read/write access to the target repository (a personal access token with `repo` scope, or a GitHub App with appropriate permissions).
+3. **Network access** — the workflow needs to reach `github.com` to fetch PR data and post results.
+
+No specific AI provider or API key is required beyond your configured skrptiq LLM provider.
+
+## Provider Notes
+
+- Code analysis and security scanning steps benefit from a model with strong reasoning capabilities.
+- Style checking is lighter — a faster, smaller model works well here.
+- The final approval decision step benefits from a model that handles nuanced judgements well.
+- Large PRs (1000+ changed lines) will use more tokens — consider a provider with generous context limits.
+
+## Example Input
+
+To test this workflow immediately after import:
+
+```
+PR URL: https://github.com/octocat/Hello-World/pull/1
+```
+
+For a more realistic test, point it at any open PR in a repository you have access to. The workflow adapts to any language and framework — it reads the project's own style configuration and adjusts its analysis accordingly.

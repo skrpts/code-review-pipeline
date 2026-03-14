@@ -23,7 +23,6 @@ tags:
 # --- Security & Access ---
 requires:
   services:
-    - "anthropic-claude"
     - "github-mcp"
   permissions:
     - "network:github.com"

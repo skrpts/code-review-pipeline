@@ -5,7 +5,7 @@ title: Security Scanning
 description: "Identifies security vulnerabilities, insecure patterns, and dependency risks in code"
 tags: [Production, Tested]
 connections:
-  - target: anthropic-claude
+  - target: llm-service
     type: runs_on
   - target: review-standards
     type: references
