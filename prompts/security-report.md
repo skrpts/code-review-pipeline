@@ -3,7 +3,7 @@ type: prompt
 id: security-report
 title: Security Report
 description: "Produces a detailed security findings report with risk ratings and remediation guidance"
-tags: [Needs Review]
+tags: [Production]
 connections:
   - target: security-scanning
     type: derived_from
@@ -14,7 +14,7 @@ metadata:
 
 ## Purpose
 
-Generates a comprehensive security report from the security scanning findings. Intended for security-conscious teams that need more detail than what appears in the general review summary.
+Generates a structured security report with CWE references and remediation guidance from the security scanning findings. Intended for security-conscious teams that need more detail than what appears in the general review summary.
 
 ## Prompt
 

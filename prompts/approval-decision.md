@@ -3,7 +3,7 @@ type: prompt
 id: approval-decision
 title: Approval Decision
 description: "Makes an approve or request-changes decision with structured reasoning"
-tags: [Needs Review]
+tags: [Production]
 connections:
   - target: code-analysis
     type: derived_from

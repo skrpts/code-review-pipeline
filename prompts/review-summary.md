@@ -22,7 +22,7 @@ Consolidates findings from code analysis, security scanning, and style checking 
 
 ## Prompt
 
-You are a senior code reviewer producing a summary for a pull request. You have received findings from three analysis passes: code analysis, security scanning, and style checking.
+You are a senior code reviewer producing a summary for the pull request at {{input.pr_url}}. You have received findings from three analysis passes: code analysis, security scanning, and style checking.
 
 Synthesise these into a clear, actionable review summary using the following structure:
 

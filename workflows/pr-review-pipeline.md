@@ -39,9 +39,9 @@ This workflow runs a complete automated code review on a pull request. It fetche
 
 ### Stage 1: Fetch PR Data
 
-**Input:** GitHub PR URL or repository + PR number
+**Input:** {{input.pr_url}}
 
-Using the GitHub MCP service, retrieve:
+Using the GitHub MCP service, fetch the pull request at {{input.pr_url}} and retrieve:
 
 - PR metadata (title, description, author, base branch, head branch)
 - The full diff (changed files with context)
@@ -60,11 +60,11 @@ Invoke the **code-analysis** skill against each modified file. Focus analysis on
 
 #### 2b. Style Checking
 
-Invoke the **style-checking** skill against each modified file. Load the repository's style configuration (.eslintrc, .prettierrc, etc.) if available. Only flag style issues in changed lines — existing violations in untouched code are out of scope for this review.
+Skip this pass if {{input.skip_style}} is set to `true`. Otherwise, invoke the **style-checking** skill against each modified file. Load the repository's style configuration (.eslintrc, .prettierrc, etc.) if available. Only flag style issues in changed lines — existing violations in untouched code are out of scope for this review.
 
 #### 2c. Security Scanning
 
-Invoke the **security-scanning** skill against each modified file. Additionally scan any new or modified configuration files, dependency manifests, and environment variable references. Cross-reference findings with the review standards source document.
+Skip this pass if {{input.skip_security}} is set to `true`. Otherwise, invoke the **security-scanning** skill against each modified file. Additionally scan any new or modified configuration files, dependency manifests, and environment variable references. Cross-reference findings with the review standards source document.
 
 ### Stage 3: Generate Outputs
 
@@ -111,7 +111,7 @@ Using the GitHub MCP service:
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `max_findings` | 50 | Maximum number of findings to include in the review |
-| `severity_threshold` | low | Minimum severity to report (low, medium, high, critical) |
+| `severity_threshold` | low | Minimum severity to report (low, medium, high, critical). Set via {{input.severity_threshold}} |
 | `skip_style` | false | Skip style checking pass |
 | `skip_security` | false | Skip security scanning pass |
 | `auto_approve` | false | If true, automatically approve PRs with no high/critical findings |
