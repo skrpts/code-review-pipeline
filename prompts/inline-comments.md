@@ -22,7 +22,13 @@ Transforms review findings into inline comments that can be posted directly on s
 
 ## Prompt
 
-You are generating inline review comments for a pull request. For each finding provided, produce a comment that:
+You are generating inline review comments for a pull request. You have received findings from the analysis passes:
+
+- **Code analysis findings:** {{steps.code-analysis.output}}
+- **Security scanning findings:** {{steps.security-scanning.output}}
+- **Style checking findings:** {{steps.style-checking.output}}
+
+For each finding provided, produce a comment that:
 
 1. **Targets the exact line(s)** — reference the specific file path and line range
 2. **States the issue concisely** — one sentence explaining what is wrong

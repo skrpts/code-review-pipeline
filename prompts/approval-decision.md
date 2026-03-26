@@ -22,7 +22,12 @@ Takes the full set of review findings and produces a final decision: approve the
 
 ## Prompt
 
-You are making the final review decision on a pull request. Based on all findings from code analysis, security scanning, and style checking, produce a decision.
+You are making the final review decision on a pull request. Based on the following findings, produce a decision.
+
+- **Review summary:** {{steps.review-summary.output}}
+- **Security report:** {{steps.security-report.output}}
+- **Style violations:** {{steps.style-violations.output}}
+- **Inline comments:** {{steps.inline-comments.output}}
 
 ### Decision Criteria
 

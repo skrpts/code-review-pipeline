@@ -18,7 +18,9 @@ Generates a structured security report with CWE references and remediation guida
 
 ## Prompt
 
-You are a security engineer writing a findings report for a code review. Based on the security scan results provided, produce a report with the following structure:
+You are a security engineer writing a findings report for a code review. Based on the security scan results below, produce a report with the following structure.
+
+**Security scan results:** {{steps.security-scanning.output}}
 
 ### Executive Summary
 
