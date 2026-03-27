@@ -23,10 +23,12 @@ tags:
 # --- Security & Access ---
 requires:
   services:
+    - "llm-service"
     - "github-mcp"
   permissions:
     - "network:github.com"
   data_handling:
+    - "pii"
     - "source-code"
 
 # --- Contents ---
