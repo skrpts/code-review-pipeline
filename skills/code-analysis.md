@@ -7,6 +7,8 @@ tags: [Production, Tested]
 connections:
   - target: llm-service
     type: runs_on
+  - target: ollama-local
+    type: runs_on
 metadata:
   complexity: medium
   avg_tokens: 1200

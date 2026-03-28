@@ -21,6 +21,8 @@ connections:
     type: uses
   - target: approval-decision
     type: uses
+  - target: structured-data-extraction
+    type: uses
   - target: github-mcp
     type: runs_on
   - target: llm-service

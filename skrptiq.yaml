@@ -2,7 +2,7 @@
 name: "code-review-pipeline"
 display_name: "Code Review Pipeline"
 description: "Automated PR review with style checking, security scan, and structured feedback"
-version: "1.3.0"
+version: "1.4.0"
 engine: ">=1.0.0"
 
 # --- Attribution ---
@@ -25,19 +25,21 @@ requires:
   services:
     - "llm-service"
     - "github-mcp"
+    - "ollama-local"
   permissions:
     - "network:github.com"
+    - "network:ollama.com"
   data_handling:
     - "pii"
     - "source-code"
 
 # --- Contents ---
 contents:
-  skills: 3
+  skills: 4
   prompts: 5
   workflows: 1
-  services: 2
+  services: 3
   sources: 1
   documents: 0
   assets: 0
-  total: 12
+  total: 14
