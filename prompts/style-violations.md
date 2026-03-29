@@ -3,7 +3,7 @@ type: prompt
 id: style-violations
 title: Style Violations
 description: "Lists style guide violations with specific fix suggestions and auto-fix indicators"
-tags: [Tested]
+tags: [Tested, quality:review, quality:standards, technical:code]
 connections:
   - target: style-checking
     type: derived_from

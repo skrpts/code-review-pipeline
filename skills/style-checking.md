@@ -3,7 +3,7 @@ type: skill
 id: style-checking
 title: Style Checking
 description: "Validates code against style guidelines, naming conventions, and formatting standards"
-tags: [Production]
+tags: [Production, quality:review, quality:standards, technical:code]
 connections:
   - target: llm-service
     type: runs_on

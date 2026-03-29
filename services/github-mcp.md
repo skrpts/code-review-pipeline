@@ -3,7 +3,7 @@ type: service
 id: github-mcp
 title: GitHub MCP
 description: "GitHub Model Context Protocol service for pull request access and review posting"
-tags: [Production]
+tags: [Production, quality:review, technical:code]
 connections: []
 metadata:
   provider: github

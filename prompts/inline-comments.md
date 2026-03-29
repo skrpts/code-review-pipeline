@@ -3,7 +3,7 @@ type: prompt
 id: inline-comments
 title: Inline Comments
 description: "Generates precise inline code comments for specific issues found during review"
-tags: [Production]
+tags: [Production, quality:review, technical:code]
 connections:
   - target: code-analysis
     type: derived_from

@@ -3,7 +3,7 @@ type: workflow
 id: pr-review-pipeline
 title: PR Review Pipeline
 description: "Orchestrates the full pull request review: fetch, analyse, check style, scan security, summarise, decide"
-tags: [Production, Tested]
+tags: [Production, Tested, quality:review, technical:code]
 connections:
   - target: code-analysis
     type: uses

@@ -3,7 +3,7 @@ type: skill
 id: security-scanning
 title: Security Scanning
 description: "Identifies security vulnerabilities, insecure patterns, and dependency risks in code"
-tags: [Production, Tested]
+tags: [Production, Tested, quality:review, quality:security, technical:code, technical:security]
 connections:
   - target: llm-service
     type: runs_on

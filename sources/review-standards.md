@@ -3,7 +3,7 @@ type: source
 id: review-standards
 title: Review Standards
 description: "Coding standards and review criteria used as the baseline for all analysis passes"
-tags: [Production]
+tags: [Production, quality:review, quality:standards, technical:code]
 connections: []
 metadata:
   last_updated: "2026-03-01"

@@ -3,7 +3,7 @@ type: prompt
 id: security-report
 title: Security Report
 description: "Produces a detailed security findings report with risk ratings and remediation guidance"
-tags: [Production]
+tags: [Production, quality:review, quality:security, technical:code, technical:security]
 connections:
   - target: security-scanning
     type: derived_from
