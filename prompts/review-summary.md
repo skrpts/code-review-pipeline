@@ -3,7 +3,7 @@ type: prompt
 id: review-summary
 title: Review Summary
 description: "Generates a structured, readable summary of all review findings for a pull request"
-tags: [Production, quality:review, technical:code]
+tags: [Production, Code, Review]
 connections:
   - target: code-analysis
     type: derived_from

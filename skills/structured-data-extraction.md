@@ -3,7 +3,7 @@ type: skill
 id: structured-data-extraction
 title: Structured Data Extraction
 description: "Extracts structured fields and data points from unstructured text"
-tags: [Tested, quality:review, technical:code, utility:extraction]
+tags: [Tested, Automation, Code, Review]
 connections:
   - target: llm-service
     type: runs_on

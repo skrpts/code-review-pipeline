@@ -3,7 +3,7 @@ type: service
 id: ollama-local
 title: Ollama Local
 description: "Local LLM inference via Ollama for private, offline code review"
-tags: [Production, quality:review, technical:code]
+tags: [Production, Code, Review]
 connections: []
 metadata:
   serviceType: llm
