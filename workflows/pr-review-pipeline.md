@@ -27,11 +27,11 @@ connections:
     type: runs_on
   - target: llm-service
     type: runs_on
+  - target: markdown-formatting
 metadata:
   estimated_duration: "30-90 seconds"
   avg_tokens: 5000
   trigger: manual
-  - target: markdown-formatting
     type: uses
 ---
 
