@@ -27,7 +27,9 @@ connections:
     type: runs_on
   - target: llm-service
     type: runs_on
-  - target: markdown-formatting
+  - target: format-conversion
+    type: uses
+  - target: defang-content
     type: uses
 metadata:
   estimated_duration: "30-90 seconds"
