@@ -11,16 +11,6 @@ connections:
     type: uses
   - target: style-checking
     type: uses
-  - target: review-summary
-    type: uses
-  - target: inline-comments
-    type: uses
-  - target: security-report
-    type: uses
-  - target: style-violations
-    type: uses
-  - target: approval-decision
-    type: uses
   - target: structured-data-extraction
     type: uses
   - target: github-mcp
