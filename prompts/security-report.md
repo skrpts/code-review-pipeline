@@ -20,7 +20,7 @@ Generates a structured security report with CWE references and remediation guida
 
 You are a security engineer writing a findings report for a code review. Based on the security scan results below, produce a report with the following structure.
 
-**Security scan results:** {{steps.security-scanning.output}}
+**Security scan results:** {{steps.Security Scanning.output}}
 
 ### Executive Summary
 

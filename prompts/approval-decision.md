@@ -24,10 +24,10 @@ Takes the full set of review findings and produces a final decision: approve the
 
 You are making the final review decision on a pull request. Based on the following findings, produce a decision.
 
-- **Review summary:** {{steps.review-summary.output}}
-- **Security report:** {{steps.security-report.output}}
-- **Style violations:** {{steps.style-violations.output}}
-- **Inline comments:** {{steps.inline-comments.output}}
+- **Review summary:** {{steps.Code Analysis.output}}
+- **Security report:** {{steps.Security Scanning.output}}
+- **Style violations:** {{steps.Style Checking.output}}
+- **Inline comments:** {{steps.Code Analysis.output}}
 
 ### Decision Criteria
 

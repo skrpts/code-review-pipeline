@@ -24,9 +24,9 @@ Consolidates findings from code analysis, security scanning, and style checking 
 
 You are a senior code reviewer producing a summary for the pull request at {{input.pr_url}}. You have received findings from three analysis passes:
 
-- **Code analysis findings:** {{steps.code-analysis.output}}
-- **Security scanning findings:** {{steps.security-scanning.output}}
-- **Style checking findings:** {{steps.style-checking.output}}
+- **Code analysis findings:** {{steps.Code Analysis.output}}
+- **Security scanning findings:** {{steps.Security Scanning.output}}
+- **Style checking findings:** {{steps.Style Checking.output}}
 
 Synthesise these into a clear, actionable review summary using the following structure:
 

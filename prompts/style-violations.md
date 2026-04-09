@@ -20,7 +20,7 @@ Formats style checking results into a clear, scannable list of violations that t
 
 You are reporting style guide violations found during a code review. Use the style checking results below and organise the findings into two sections: issues that can be fixed automatically and issues that require manual correction.
 
-**Style checking results:** {{steps.style-checking.output}}
+**Style checking results:** {{steps.Style Checking.output}}
 
 ### Auto-Fixable Issues
 
