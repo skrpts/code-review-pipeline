@@ -24,7 +24,7 @@ Transforms review findings into inline comments that can be posted directly on s
 
 You are generating inline review comments for a pull request. You have received findings from the analysis passes:
 
-- **Code analysis findings:** {{steps.Code Analysis.output}}
+- **Code analysis findings:** {{steps.previous.output}}
 - **Security scanning findings:** {{steps.Security Scanning.output}}
 - **Style checking findings:** {{steps.Style Checking.output}}
 

@@ -24,7 +24,7 @@ Consolidates findings from code analysis, security scanning, and style checking 
 
 You are a senior code reviewer producing a summary for the pull request at {{input.pr_url}}. You have received findings from three analysis passes:
 
-- **Code analysis findings:** {{steps.Code Analysis.output}}
+- **Code analysis findings:** {{steps.previous.output}}
 - **Security scanning findings:** {{steps.Security Scanning.output}}
 - **Style checking findings:** {{steps.Style Checking.output}}
 
