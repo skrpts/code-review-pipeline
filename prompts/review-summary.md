@@ -4,6 +4,13 @@ id: review-summary
 title: Review Summary
 description: "Generates a structured, readable summary of all review findings for a pull request"
 tags: [Production, Code, Review]
+inputs:
+  pr_url:
+    label: "Pull Request URL"
+    description: "The URL of the pull request to review"
+    example: "https://github.com/org/repo/pull/123"
+    required: true
+    type: text
 connections:
   - target: code-analysis
     type: derived_from

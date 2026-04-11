@@ -4,6 +4,13 @@ id: extract-structured-data
 title: "Extract Structured Data"
 description: "Extracts structured fields and key-value pairs from unstructured text"
 tags: [Production, Automation]
+inputs:
+  extraction_fields:
+    label: "Fields to Extract"
+    description: "The specific fields or data points to extract from the text"
+    example: "Company name, revenue, employee count, founding year"
+    required: true
+    type: text
 connections:
   - target: structured-data-extraction
     type: derived_from
