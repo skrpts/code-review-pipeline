@@ -28,19 +28,17 @@ metadata:
 execution:
   - skill: "code-analysis"
     step_type: "synthesis"
+  - parallel:
+    - skill: "structured-data-extraction"
+      step_type: "synthesis"
   - skill: "security-scanning"
     step_type: "synthesis"
   - skill: "style-checking"
     step_type: "review"
-  - skill: "structured-data-extraction"
-    step_type: "synthesis"
-    input_from: "code-analysis"
   - skill: "format-conversion"
     step_type: "content"
-    input_from: "structured-data-extraction"
   - skill: "defang-content"
     step_type: "content"
-    input_from: "format-conversion"
 ---
 
 ## Overview

@@ -3,7 +3,7 @@ id: "277026b6-5edc-4f45-ac67-593bf99b3f7a"
 name: "code-review-pipeline"
 display_name: "Code Review Pipeline"
 description: "Automated PR review with style checking, security scan, and structured feedback"
-version: "1.1.8"
+version: "1.1.9"
 engine: ">=1.0.0"
 
 # --- Attribution ---
