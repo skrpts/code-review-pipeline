@@ -25,6 +25,14 @@ metadata:
   estimated_duration: "30-90 seconds"
   avg_tokens: 5000
   trigger: manual
+output_step: "code-analysis"
+composite_steps:
+  - "code-analysis"
+  - "security-scanning"
+  - "style-checking"
+  - "structured-data-extraction"
+  - "format-conversion"
+  - "defang-content"
 execution:
   - skill: "code-analysis"
     step_type: "synthesis"
