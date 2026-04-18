@@ -9,8 +9,15 @@ inputs:
     label: "Pull Request URL"
     description: "The URL of the pull request to review"
     example: "https://github.com/org/repo/pull/123"
-    required: true
+    required: false
     type: text
+  code_diff:
+    label: "Code to Review"
+    description: "The code diff, source files, or pull request content to review — paste or upload"
+    example: "Paste the diff or code changes here"
+    required: true
+    type: file
+    accept: ".diff,.patch,.txt,.md"
 connections:
   - target: code-analysis
     type: derived_from
@@ -29,7 +36,13 @@ Consolidates findings from code analysis, security scanning, and style checking 
 
 ## Prompt
 
-You are a senior code reviewer producing a summary for the pull request at {{input.pr_url}}. You have received findings from three analysis passes:
+You are a senior code reviewer producing a summary for the pull request at {{input.pr_url}}.
+
+### Code Under Review
+
+{{input.code_diff}}
+
+You have received findings from three analysis passes:
 
 - **Code analysis findings:** {{steps.previous.output}}
 - **Security scanning findings:** {{steps.Security Scanning.output}}
