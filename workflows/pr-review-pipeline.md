@@ -36,6 +36,7 @@ composite_steps:
 execution:
   - skill: "code-analysis"
     step_type: "synthesis"
+    prompt: "review-summary"
   - parallel:
     - skill: "structured-data-extraction"
       step_type: "synthesis"
