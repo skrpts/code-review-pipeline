@@ -39,10 +39,13 @@ execution:
     prompt: "review-summary"
   - parallel:
     - skill: "structured-data-extraction"
+      prompt: "extract-structured-data"
       step_type: "synthesis"
   - skill: "security-scanning"
+    prompt: "security-report"
     step_type: "synthesis"
   - skill: "style-checking"
+    prompt: "approval-decision"
     step_type: "review"
   - skill: "format-conversion"
     step_type: "content"
