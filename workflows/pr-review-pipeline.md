@@ -41,6 +41,8 @@ execution:
     - skill: "structured-data-extraction"
       prompt: "extract-structured-data"
       step_type: "synthesis"
+      context:
+        extraction_fields: ""
   - skill: "security-scanning"
     prompt: "security-report"
     step_type: "synthesis"
