@@ -42,7 +42,7 @@ execution:
       prompt: "extract-structured-data"
       step_type: "synthesis"
       context:
-        extraction_fields: ""
+        extraction_fields: "Key findings, dates, names, action items"
   - skill: "security-scanning"
     prompt: "security-report"
     step_type: "synthesis"
@@ -50,9 +50,9 @@ execution:
     prompt: "approval-decision"
     step_type: "review"
   - skill: "format-conversion"
-    step_type: "content"
+    step_type: "local.transform"
   - skill: "defang-content"
-    step_type: "content"
+    step_type: "local.transform"
 ---
 
 ## Overview
