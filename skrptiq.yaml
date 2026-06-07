@@ -3,7 +3,7 @@ id: "277026b6-5edc-4f45-ac67-593bf99b3f7a"
 name: "code-review-pipeline"
 display_name: "Code Review Pipeline"
 description: "Automated PR review with style checking, security scan, and structured feedback"
-version: "1.1.24"
+version: "1.1.25"
 engine: ">=0.1.0"
 
 # --- Attribution ---
@@ -22,6 +22,32 @@ tags:
   - "security"
 
 # --- Security & Access ---
+dependencies:
+  - id: "5824c0e3-2187-4851-b1b4-00a82818b061"
+    name: "code-analysis"
+    version: 1.0.1
+    checksum: "sha256:91056462817a2994df814270be7d84bdf8bcaa82fcd83487742aa3abf650cbdd"
+  - id: "553c54e1-e570-4a07-b95d-51933c619dbc"
+    name: "defang-content"
+    version: 1.0.1
+    checksum: "sha256:45cb59641c6d90b14ad92530f49178bb516f2edf1b67cf009457732ea510cb25"
+  - id: "7e34d2aa-b68b-4bcb-bc95-8b499b118f4f"
+    name: "extract-structured-data"
+    version: 1.0.1
+    checksum: "sha256:56d6c330c86135eaef5c8ad8c50c90230b843f3075159f3869e17d4d19cc3a78"
+  - id: "6fbc6b50-b4c9-465f-b208-1fc453df76b9"
+    name: "format-conversion"
+    version: 1.0.1
+    checksum: "sha256:c1b6c9e681180292ca223c66068766a887579c1f511fa28829c1a820930a3648"
+  - id: "fcab9536-a13e-49c9-b0c3-bb3097682e69"
+    name: "llm-service"
+    version: 1.0.1
+    checksum: "sha256:455c8bf590a9426d830bffd1a741afa058149bc29c58186c34d0d8699bea4bda"
+  - id: "a611e3ad-f49d-41fb-a380-f97289f51d12"
+    name: "structured-data-extraction"
+    version: 1.0.1
+    checksum: "sha256:c5ca3625360e310760683e9ff50ba7cc1c16291682fb4233f3b9019938e934fa"
+
 requires:
   services:
     - "llm-service"
@@ -36,11 +62,11 @@ requires:
 
 # --- Contents ---
 contents:
-  skills: 6
-  prompts: 6
+  skills: 2
+  prompts: 5
   workflows: 1
-  services: 3
+  services: 2
   sources: 1
   documents: 0
   assets: 0
-  total: 17
+  total: 11
