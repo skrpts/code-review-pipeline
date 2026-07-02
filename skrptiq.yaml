@@ -3,7 +3,7 @@ id: "277026b6-5edc-4f45-ac67-593bf99b3f7a"
 name: "code-review-pipeline"
 display_name: "Code Review Pipeline"
 description: "Automated PR review with style checking, security scan, and structured feedback"
-version: "1.1.25"
+version: "1.1.26"
 engine: ">=0.1.0"
 
 # --- Attribution ---
@@ -70,3 +70,17 @@ contents:
   documents: 0
   assets: 0
   total: 11
+
+security:
+  status: "pass"
+  scanned_at: "2026-07-02T19:34:49.635Z"
+  scanner_version: "3.3.0"
+  syntactic: "pass"
+  structural: "pass"
+  detected:
+    services: ["llm-service"]
+    permissions: ["filesystem:read", "network:ollama.com"]
+    data_handling: ["pii"]
+  undeclared: []
+  warnings: []
+  report_url: "https://hub.skrptiq.ai/skrpts/code-review-pipeline/security"

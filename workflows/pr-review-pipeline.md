@@ -37,22 +37,28 @@ execution:
   - skill: "code-analysis"
     step_type: "synthesis"
     prompt: "review-summary"
+    output: { name: "review_summary", type: "text" }
   - parallel:
     - skill: "structured-data-extraction"
       prompt: "extract-structured-data"
       step_type: "synthesis"
+      output: { name: "extracted_data", type: "json" }
       context:
         extraction_fields: "Key findings, dates, names, action items"
   - skill: "security-scanning"
     prompt: "security-report"
     step_type: "synthesis"
+    output: { name: "security_report", type: "text" }
   - skill: "style-checking"
     prompt: "approval-decision"
     step_type: "review"
+    output: { name: "approval_decision", type: "decision" }
   - skill: "format-conversion"
     step_type: "local.transform"
+    output: { name: "formatted_review", type: "text" }
   - skill: "defang-content"
     step_type: "local.transform"
+    output: { name: "sanitised_review", type: "text" }
 ---
 
 ## Overview
