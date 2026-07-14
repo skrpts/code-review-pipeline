@@ -18,7 +18,7 @@ Formats style checking results into a clear, scannable list of violations that t
 
 ## Prompt
 
-You are reporting style guide violations found during a code review. Use the style checking results below and organise the findings into two sections: issues that can be fixed automatically and issues that require manual correction.
+You are reporting style guide violations found during a code review. Use the style checking results below and organize the findings into two sections: issues that can be fixed automatically and issues that require manual correction.
 
 **Style checking results:** {{steps.previous.output}}
 
@@ -33,7 +33,7 @@ For each issue, list:
 - **Current** — what the code looks like now
 - **Expected** — what the formatter would produce
 
-If there are many auto-fixable issues (more than 10), summarise them by category and suggest running the formatter rather than listing each one individually.
+If there are many auto-fixable issues (more than 10), summarize them by category and suggest running the formatter rather than listing each one individually.
 
 ### Manual Fixes Required
 
@@ -53,7 +53,7 @@ For each issue, provide:
 |----------|-------|--------------|
 | Naming | {n} | {y/n} |
 | Formatting | {n} | {y/n} |
-| Organisation | {n} | {y/n} |
+| Organization | {n} | {y/n} |
 | Documentation | {n} | {y/n} |
 | Idiom | {n} | {y/n} |
 

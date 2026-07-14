@@ -3,7 +3,7 @@ id: "277026b6-5edc-4f45-ac67-593bf99b3f7a"
 name: "code-review-pipeline"
 display_name: "Code Review Pipeline"
 description: "Automated PR review with style checking, security scan, and structured feedback"
-version: "1.1.26"
+version: "1.1.27"
 engine: ">=0.1.0"
 
 # --- Attribution ---
@@ -47,6 +47,10 @@ dependencies:
     name: "structured-data-extraction"
     version: 1.0.1
     checksum: "sha256:c5ca3625360e310760683e9ff50ba7cc1c16291682fb4233f3b9019938e934fa"
+  - id: "f4c0bfa9-5588-4590-ab27-ca696bcd959f"
+    name: "github-mcp"
+    version: 1.0.0
+    checksum: "sha256:705e6376b99589c5d34916f5559068517c25c9e5151461212fada3039ff7c5e4"
 
 requires:
   services:
@@ -65,21 +69,21 @@ contents:
   skills: 2
   prompts: 5
   workflows: 1
-  services: 2
+  services: 1
   sources: 1
   documents: 0
   assets: 0
-  total: 11
+  total: 10
 
 security:
   status: "pass"
-  scanned_at: "2026-07-03T15:49:36.794Z"
+  scanned_at: "2026-07-14T11:42:14.795Z"
   scanner_version: "3.3.0"
   syntactic: "pass"
   structural: "pass"
   detected:
-    services: ["llm-service"]
-    permissions: ["filesystem:read", "network:ollama.com"]
+    services: ["llm-service", "github-mcp"]
+    permissions: ["network:ollama.com"]
     data_handling: ["pii"]
   undeclared: []
   warnings: []

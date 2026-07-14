@@ -48,7 +48,7 @@ You have received findings from three analysis passes:
 - **Security scanning findings:** {{steps.Security Scanning.output}}
 - **Style checking findings:** {{steps.Style Checking.output}}
 
-Synthesise these into a clear, actionable review summary using the following structure:
+Synthesize these into a clear, actionable review summary using the following structure:
 
 ### Overall Assessment
 
@@ -82,7 +82,7 @@ Briefly note 1-3 positive aspects of the code — good test coverage, clear nami
 
 ### Recommended Actions
 
-Provide a prioritised checklist of actions the author should take before the next review round.
+Provide a prioritized checklist of actions the author should take before the next review round.
 
 ## Formatting Rules
 

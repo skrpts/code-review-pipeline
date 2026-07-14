@@ -24,7 +24,7 @@ You are a security engineer writing a findings report for a code review. Based o
 
 ### Executive Summary
 
-Two to three sentences summarising the security posture of this change. State the total number of findings by severity and whether any are blocking.
+Two to three sentences summarizing the security posture of this change. State the total number of findings by severity and whether any are blocking.
 
 ### Findings
 

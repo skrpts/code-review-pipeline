@@ -16,7 +16,7 @@ metadata:
 
 ## Capability
 
-Checks code against a defined set of style guidelines to enforce consistency across a codebase. Goes beyond what automated formatters catch by evaluating naming conventions, comment quality, file organisation, and idiomatic usage patterns.
+Checks code against a defined set of style guidelines to enforce consistency across a codebase. Goes beyond what automated formatters catch by evaluating naming conventions, comment quality, file organization, and idiomatic usage patterns.
 
 ## Checks Performed
 
@@ -28,7 +28,7 @@ Checks code against a defined set of style guidelines to enforce consistency acr
 - Type and class names use PascalCase
 - File names match the project's convention (kebab-case, camelCase, or matching the default export)
 
-### Code Organisation
+### Code Organization
 
 - Imports are grouped logically (standard library, third-party, local) with consistent ordering
 - Related functions are co-located rather than scattered across the file

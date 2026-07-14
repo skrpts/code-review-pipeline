@@ -2,7 +2,7 @@
 type: workflow
 id: pr-review-pipeline
 title: PR Review Pipeline
-description: "Orchestrates the full pull request review: fetch, analyse, check style, scan security, summarise, decide"
+description: "Orchestrates the full pull request review: fetch, analyze, check style, scan security, summarize, decide"
 tags: [Production, Tested, Code, Review]
 connections:
   - target: code-analysis
@@ -86,7 +86,7 @@ Three analysis passes run concurrently against the changed files:
 
 #### 2a. Code Analysis
 
-Invoke the **code-analysis** skill against each modified file. Focus analysis on the changed lines and their immediate context (surrounding functions and classes). Do not analyse unchanged files unless a change affects their public interface.
+Invoke the **code-analysis** skill against each modified file. Focus analysis on the changed lines and their immediate context (surrounding functions and classes). Do not analyze unchanged files unless a change affects their public interface.
 
 #### 2b. Style Checking
 
@@ -114,7 +114,7 @@ Invoke the **security-report** prompt only if security findings exist. If no sec
 
 #### 3d. Style Violations
 
-Invoke the **style-violations** prompt to produce the categorised list of style issues. If all violations are auto-fixable, note that the author can run their formatter to resolve them.
+Invoke the **style-violations** prompt to produce the categorized list of style issues. If all violations are auto-fixable, note that the author can run their formatter to resolve them.
 
 ### Stage 4: Decision
 
@@ -160,10 +160,10 @@ Using the GitHub MCP service:
 
 | Name | Description |
 |------|-------------|
-| Review summary | Top-level PR comment summarising all findings, posted as a GitHub PR comment |
+| Review summary | Top-level PR comment summarizing all findings, posted as a GitHub PR comment |
 | Inline comments | Per-line review comments posted directly on the diff |
 | Security report | Detailed security findings (only if issues found), posted as a collapsed comment |
-| Style violations | Categorised list of style issues with auto-fix availability noted |
+| Style violations | Categorized list of style issues with auto-fix availability noted |
 | Approval decision | Final verdict: APPROVE, REQUEST_CHANGES, or COMMENT |
 
 ## Setup
