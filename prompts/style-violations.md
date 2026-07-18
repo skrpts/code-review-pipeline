@@ -4,6 +4,11 @@ id: style-violations
 title: Style Violations
 description: "Lists style guide violations with specific fix suggestions and auto-fix indicators"
 tags: [Tested, Code, Review]
+context_params:
+  style_findings:
+    label: "Code to Review"
+    description: "The code the style pass examines and formats into the violations list."
+    required: false
 connections:
   - target: style-checking
     type: derived_from
@@ -20,7 +25,7 @@ Formats style checking results into a clear, scannable list of violations that t
 
 You are reporting style guide violations found during a code review. Use the style checking results below and organize the findings into two sections: issues that can be fixed automatically and issues that require manual correction.
 
-**Style checking results:** {{steps.previous.output}}
+**Style checking results:** {{step.context.style_findings}}
 
 ### Auto-Fixable Issues
 

@@ -18,6 +18,19 @@ inputs:
     required: true
     type: file
     accept: ".diff,.patch,.txt,.md"
+context_params:
+  code_analysis_findings:
+    label: "Code Analysis Findings"
+    description: "Consolidated code-analysis and inline-comment findings from the review passes."
+    required: false
+  security:
+    label: "Security Findings"
+    description: "Security scanning findings for this change."
+    required: false
+  style:
+    label: "Style Findings"
+    description: "Style checking findings for this change."
+    required: false
 connections:
   - target: code-analysis
     type: derived_from
@@ -44,9 +57,9 @@ You are a senior code reviewer producing a summary for the pull request at {{inp
 
 You have received findings from three analysis passes:
 
-- **Code analysis findings:** {{steps.previous.output}}
-- **Security scanning findings:** {{steps.Security Scanning.output}}
-- **Style checking findings:** {{steps.Style Checking.output}}
+- **Code analysis findings:** {{step.context.code_analysis_findings}}
+- **Security scanning findings:** {{step.context.security}}
+- **Style checking findings:** {{step.context.style}}
 
 Synthesize these into a clear, actionable review summary using the following structure:
 

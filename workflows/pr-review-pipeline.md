@@ -11,6 +11,10 @@ connections:
     type: uses
   - target: style-checking
     type: uses
+  - target: inline-comment-generation
+    type: uses
+  - target: approval-decision-making
+    type: uses
   - target: structured-data-extraction
     type: uses
   - target: github-mcp
@@ -30,14 +34,66 @@ composite_steps:
   - "code-analysis"
   - "security-scanning"
   - "style-checking"
+  - "inline-comment-generation"
+  - "approval-decision-making"
   - "structured-data-extraction"
   - "format-conversion"
   - "defang-content"
 execution:
+  - parallel:
+    - skill: "security-scanning"
+      prompt: "security-report"
+      step_type: "synthesis"
+      output: { name: "security_report", type: "text" }
+    - skill: "style-checking"
+      prompt: "style-violations"
+      step_type: "synthesis"
+      output: { name: "style_violations", type: "text" }
+      bindings:
+        style_findings:
+          from_input: "code_diff"
+  - skill: "inline-comment-generation"
+    prompt: "inline-comments"
+    step_type: "synthesis"
+    output: { name: "inline_comments", type: "json" }
+    bindings:
+      security:
+        from_step: "Security Scanning"
+        field: output
+      style:
+        from_step: "Style Checking"
+        field: output
   - skill: "code-analysis"
     step_type: "synthesis"
     prompt: "review-summary"
     output: { name: "review_summary", type: "text" }
+    bindings:
+      code_analysis_findings:
+        from_step: "Inline Comments"
+        field: output
+      security:
+        from_step: "Security Scanning"
+        field: output
+      style:
+        from_step: "Style Checking"
+        field: output
+  - skill: "approval-decision-making"
+    prompt: "approval-decision"
+    step_type: "review"
+    output: { name: "approval_decision", type: "decision" }
+    bindings:
+      review:
+        from_step: "Code Analysis"
+        field: output
+      security:
+        from_step: "Security Scanning"
+        field: output
+      style:
+        from_step: "Style Checking"
+        field: output
+      inline:
+        from_step: "Inline Comments"
+        field: output
   - parallel:
     - skill: "structured-data-extraction"
       prompt: "extract-structured-data"
@@ -45,14 +101,6 @@ execution:
       output: { name: "extracted_data", type: "json" }
       context:
         extraction_fields: "Key findings, dates, names, action items"
-  - skill: "security-scanning"
-    prompt: "security-report"
-    step_type: "synthesis"
-    output: { name: "security_report", type: "text" }
-  - skill: "style-checking"
-    prompt: "approval-decision"
-    step_type: "review"
-    output: { name: "approval_decision", type: "decision" }
   - skill: "format-conversion"
     step_type: "local.transform"
     output: { name: "formatted_review", type: "text" }

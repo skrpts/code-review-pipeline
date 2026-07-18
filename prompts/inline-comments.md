@@ -4,6 +4,15 @@ id: inline-comments
 title: Inline Comments
 description: "Generates precise inline code comments for specific issues found during review"
 tags: [Production, Code, Review]
+context_params:
+  security:
+    label: "Security Findings"
+    description: "Security scanning findings to render as inline comments."
+    required: false
+  style:
+    label: "Style Findings"
+    description: "Style checking findings to render as inline comments."
+    required: false
 connections:
   - target: code-analysis
     type: derived_from
@@ -24,9 +33,8 @@ Transforms review findings into inline comments that can be posted directly on s
 
 You are generating inline review comments for a pull request. You have received findings from the analysis passes:
 
-- **Code analysis findings:** {{steps.previous.output}}
-- **Security scanning findings:** {{steps.Security Scanning.output}}
-- **Style checking findings:** {{steps.Style Checking.output}}
+- **Security scanning findings:** {{step.context.security}}
+- **Style checking findings:** {{step.context.style}}
 
 For each finding provided, produce a comment that:
 

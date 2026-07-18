@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.1.28
+GH#863 Wave 2 (K-045 intent/output-mismatch + mis-wire) — rewire the pipeline so a real line-level review is actually produced. Previously the review summary synthesised outputs that did not exist yet (Security/Style resolved empty) and `style-checking` ran the wrong prompt (`approval-decision` instead of `style-violations`), leaving `inline-comments`, `style-violations`, and `approval-decision` orphaned. Fixes: `style-checking`→`style-violations`; new backing skills `inline-comment-generation` (runs `inline-comments`) and `approval-decision-making` (runs `approval-decision`); security + style now run first (parallel), then inline comments, then the `review-summary` synthesis (still the `output_step`), then the homed approval decision. Positional `{{steps.X.output}}` refs in review-summary/inline-comments/style-violations/approval-decision converted to named `context_params` wired by explicit `from_step`/`from_input` bindings (from_step resolves by skill title). contents.skills 2→4, total 10→12.
+
 ## v1.1.27
 GH#833 — drop the embedded `github-mcp` service node; dep-reference the canonical `_shared/github-mcp@1.0.0` instead (kills per-skrpt drift so the app can content-dedup). Keeps the single-copy `ollama-local` embedded. contents.services 2→1.
 

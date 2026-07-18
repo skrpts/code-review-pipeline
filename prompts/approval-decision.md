@@ -4,6 +4,23 @@ id: approval-decision
 title: Approval Decision
 description: "Makes an approve or request-changes decision with structured reasoning"
 tags: [Production, Code, Review]
+context_params:
+  review:
+    label: "Review Summary"
+    description: "The consolidated review summary produced by the code-analysis synthesis step."
+    required: false
+  security:
+    label: "Security Findings"
+    description: "Security scanning findings for this change."
+    required: false
+  style:
+    label: "Style Findings"
+    description: "Style checking findings for this change."
+    required: false
+  inline:
+    label: "Inline Comments"
+    description: "Per-line inline review comments generated for this change."
+    required: false
 connections:
   - target: code-analysis
     type: derived_from
@@ -24,10 +41,10 @@ Takes the full set of review findings and produces a final decision: approve the
 
 You are making the final review decision on a pull request. Based on the following findings, produce a decision.
 
-- **Review summary:** {{steps.previous.output}}
-- **Security report:** {{steps.Security Scanning.output}}
-- **Style violations:** {{steps.Style Checking.output}}
-- **Inline comments:** {{steps.previous.output}}
+- **Review summary:** {{step.context.review}}
+- **Security report:** {{step.context.security}}
+- **Style violations:** {{step.context.style}}
+- **Inline comments:** {{step.context.inline}}
 
 ### Decision Criteria
 
