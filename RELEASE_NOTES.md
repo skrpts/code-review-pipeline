@@ -1,5 +1,13 @@
 # Release Notes
 
+## v1.1.30
+GH#1044 — document the inputs this workflow's prompts REQUIRE but its Inputs table never listed. A user supplying exactly what the table asked for was running with required parameters unsatisfied — a silent wrong run, not a documentation nicety. documented 1 input(s): code_diff. Every row is generated from the requiring prompt's own declared description, example and required flag — none invented. No behaviour change; documentation only.
+
+## v1.1.29
+GH#1011 — 2 step(s) that declared the non-existent `local.transform` now declare the LLM step type they were already dispatched as, and reference the shared prompt their skill never had: `format-conversion` → `content`; `defang-content` → `validation`. The `format-conversion` step declares `context.target_format: "markdown"` — the skill supports six formats, so the format belongs to the step rather than to the shared prompt.
+
+These steps had no `prompt:` because `local.*` types need none, so the engine's LLM default had nothing to send: the author saw the model complaining about a prompt nobody wrote. **Output changes** — from a complaint to the thing the skill describes. Shared deps re-pinned to 1.0.4 with the published bundle checksum. Note: format-conversion and defang-content were pinned at 1.0.1, so this re-pin jumps to 1.0.4 — the intervening 1.0.1/1.0.2/1.0.3 are manifest-id alignment, `dependencies: []` and an en-US copy flip respectively, all explicitly content-free.
+
 ## v1.1.28
 GH#863 Wave 2 (K-045 intent/output-mismatch + mis-wire) — rewire the pipeline so a real line-level review is actually produced. Previously the review summary synthesised outputs that did not exist yet (Security/Style resolved empty) and `style-checking` ran the wrong prompt (`approval-decision` instead of `style-violations`), leaving `inline-comments`, `style-violations`, and `approval-decision` orphaned. Fixes: `style-checking`→`style-violations`; new backing skills `inline-comment-generation` (runs `inline-comments`) and `approval-decision-making` (runs `approval-decision`); security + style now run first (parallel), then inline comments, then the `review-summary` synthesis (still the `output_step`), then the homed approval decision. Positional `{{steps.X.output}}` refs in review-summary/inline-comments/style-violations/approval-decision converted to named `context_params` wired by explicit `from_step`/`from_input` bindings (from_step resolves by skill title). contents.skills 2→4, total 10→12.
 

@@ -102,10 +102,14 @@ execution:
       context:
         extraction_fields: "Key findings, dates, names, action items"
   - skill: "format-conversion"
-    step_type: "local.transform"
+    prompt: "format-conversion"
+    step_type: "content"
+    context:
+      target_format: "markdown"
     output: { name: "formatted_review", type: "text" }
   - skill: "defang-content"
-    step_type: "local.transform"
+    prompt: "defang-content"
+    step_type: "validation"
     output: { name: "sanitised_review", type: "text" }
 ---
 
@@ -203,6 +207,7 @@ Using the GitHub MCP service:
 | `{{input.severity_threshold}}` | No | Minimum severity to report. Default: `low` | `medium` |
 | `{{input.skip_style}}` | No | Skip style checking pass. Default: `false` | `true` |
 | `{{input.skip_security}}` | No | Skip security scanning pass. Default: `false` | `true` |
+| `{{input.code_diff}}` | Yes | The code diff, source files, or pull request content to review — paste or upload | `Paste the diff or code changes here` |
 
 ## Outputs
 
