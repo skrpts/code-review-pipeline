@@ -101,6 +101,10 @@ execution:
       output: { name: "extracted_data", type: "json" }
       context:
         extraction_fields: "Key findings, dates, names, action items"
+      bindings:
+        source:
+          from_step: "Code Analysis"
+          field: output
   - skill: "format-conversion"
     prompt: "format-conversion"
     step_type: "content"
